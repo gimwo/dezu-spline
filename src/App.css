@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.view {
+  height: 100vh !important;
+}
+
+.top-mid {
+  top: 45%;
+}
+
+.dot-navigate {
+  transition: all 0.2s ease-out;
+}
+
+.dot-navigate:hover {
+  background-color: red;
+  cursor: pointer;
+}
+
+.go-back-btn {
+  border-bottom: 0.5px dotted red;
+}
+
+.go-back-btn:hover {
+  cursor: pointer;
+}
