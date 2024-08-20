@@ -21,6 +21,12 @@ function App() {
   const [pressureCon, setPressureCon] = useState(false);
   const [contactCon, setContactCon] = useState(false);
 
+  const handleMouseOver = (e) => {
+    const object = e.target;
+    console.log(`ETARGET: ${object}`);
+    object.material.color.set(0xff0000); // Change color to red when hovered
+  };
+
   function onMouseDown(e) {
     console.log(e.target.name);
     if (e.target.name === "Water Jet (Bridge)") {
@@ -55,6 +61,10 @@ function App() {
         bridge.current.emitEvent("mouseDown");
         // bridge.current.emitEvent("mouseUp");
         setContainer(() => !container);
+        setTankCon(() => false);
+        setAboutCon(() => false);
+        setPressureCon(() => false);
+        setContactCon(() => false);
         break;
       case "cleaning":
         if (tankCon === true) {
@@ -62,6 +72,10 @@ function App() {
         }
         tank.current.emitEvent("mouseDown");
         setTankCon(() => !tankCon);
+        setContainer(() => false);
+        setAboutCon(() => false);
+        setPressureCon(() => false);
+        setContactCon(() => false);
         break;
       case "about":
         if (aboutCon === true) {
@@ -70,6 +84,10 @@ function App() {
 
         globe.current.emitEvent("mouseDown");
         setAboutCon(() => !aboutCon);
+        setContainer(() => false);
+        setTankCon(() => false);
+        setPressureCon(() => false);
+        setContactCon(() => false);
         break;
       case "pressure":
         if (pressureCon === true) {
@@ -77,6 +95,10 @@ function App() {
         }
         ship.current.emitEvent("mouseDown");
         setPressureCon(() => !pressureCon);
+        setContainer(() => false);
+        setTankCon(() => false);
+        setAboutCon(() => false);
+        setContactCon(() => false);
 
         break;
       case "contact":
@@ -85,6 +107,10 @@ function App() {
         }
         plane.current.emitEvent("mouseDown");
         setContactCon(() => !contactCon);
+        setContainer(() => false);
+        setTankCon(() => false);
+        setPressureCon(() => false);
+        setAboutCon(() => false);
 
         break;
       default:
@@ -107,6 +133,8 @@ function App() {
     globe.current = globeObj;
     plane.current = planeObj;
     // console.log(planeObj);
+
+    // Add hover event listeners
   }
 
   return (
@@ -174,6 +202,7 @@ function App() {
         className="view"
         scene="https://prod.spline.design/WxnbmrQKO7JgyKht/scene.splinecode"
         onMouseDown={onMouseDown}
+        onMouseHover={handleMouseOver}
       />
     </div>
   );
