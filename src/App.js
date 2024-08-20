@@ -23,31 +23,37 @@ function App() {
 
   function onMouseDown(e) {
     console.log(e.target.name);
-    if (e.target.name === "Water Jet") {
+    if (e.target.name === "Water Jet (Bridge)") {
       setContainer((container) => !container);
+      console.log("CLICKED");
     }
-    if (e.target.name === "Cleaning") {
+    if (e.target.name === "Cleaning (Tank)") {
       setTankCon((tankCon) => !tankCon);
+      console.log("CLICKED");
     }
     if (e.target.name === "Group") {
       setAboutCon((aboutCon) => !aboutCon);
+      console.log("CLICKED");
     }
-    if (e.target.name === "Pressure") {
+    if (e.target.name === "Pressure (Ship)") {
       setPressureCon((pressureCon) => !pressureCon);
+      console.log("CLICKED");
     }
-    if (e.target.name === "Contact") {
+    if (e.target.name === "Contact (Plane)") {
       setContactCon((contactCon) => !contactCon);
     }
   }
 
   function selectedObject(e) {
+    console.log(e.target.id);
     switch (e.target.id) {
       case "water-jet":
         if (container === true) {
+          console.log("CLICKED");
           return;
         }
         bridge.current.emitEvent("mouseDown");
-        bridge.current.emitEvent("mouseUp");
+        // bridge.current.emitEvent("mouseUp");
         setContainer(() => !container);
         break;
       case "cleaning":
@@ -88,11 +94,11 @@ function App() {
 
   function onLoad(spline) {
     const logoObj = spline.findObjectByName("Logo");
-    const bridgeObj = spline.findObjectByName("Water Jet");
-    const tankObj = spline.findObjectByName("Cleaning");
+    const bridgeObj = spline.findObjectByName("Water Jet (Bridge)");
+    const tankObj = spline.findObjectByName("Cleaning (Tank)");
     const globeObj = spline.findObjectByName("Group");
-    const shipObj = spline.findObjectByName("Pressure");
-    const planeObj = spline.findObjectByName("Contact");
+    const shipObj = spline.findObjectByName("Pressure (Ship)");
+    const planeObj = spline.findObjectByName("Contact (Plane)");
 
     logo.current = logoObj;
     bridge.current = bridgeObj;
@@ -100,6 +106,7 @@ function App() {
     ship.current = shipObj;
     globe.current = globeObj;
     plane.current = planeObj;
+    // console.log(planeObj);
   }
 
   return (
